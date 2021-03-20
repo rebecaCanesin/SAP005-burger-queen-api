@@ -5,4 +5,6 @@ const getAllExamples = (req, res) => {
   res.send("Request feita")
 }
 
+
+
 module.exports = { getAllExamples }
