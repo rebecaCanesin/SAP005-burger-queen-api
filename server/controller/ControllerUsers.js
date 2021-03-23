@@ -1,45 +1,51 @@
-const users = require ("../db/models/users")
+const data = require ("../db/models")
 
-module.exports = { 
-all (req, res) {
-    users.findAll().
-    then((result) => {
-        res.json(result);
-    })
-    
-},
+class UserController{
+    static async getAllUsers (req, res) {
+        const usersAll = await data.users.findAll()
+        return res.status(200).json(usersAll)
+    }
 
-// const GetUserIdRouter = (req, res) => {
-//     res.send("User Id")
-// };
+    static async getUserById (req, res) {
+        const userId = await req.params
+        const User = await data.users.findAll({
+            where:{
+                id: userId
+            }
+        })
+        return res.status(200).json(User)
+    }
 
-create(req, res){
-    const {name, email, role, restaurant} = req.body;
+    static async createUser (req, res) {
+        const {name, email, role, restaurant} = await req.body;
+        const userNew = await data.users.create({
+            name,
+            email,
+            role,
+            restaurant,
+        })
+        return res.status(201).json(userNew)
+    }
 
-    users.create({
-        name,
-        email,
-        role,
-        restaurant,
-    })
-    .then((result) => {
-        res.status(201).json(result);
-    })
-    
-},
+    static async updateUser (req, res) {
+        const userId = await req.params
+        const User = await data.users.update({
+            where:{
+                id: userId
+            }
+        })
+        return res.status(200).json(User)
+    }
 
-// const PutUserIdRouter = (req, res) => {
-//     res.send("Update Users")
-// };
-
-// const DeleteUserIdRouter = (req, res) => {
-//     res.send("Delete Users")
-// };
-
-
-    // GetUsersRouter, 
-    // GetUserIdRouter, 
-    // PostUsersRouter, 
-    // PutUserIdRouter, 
-    // DeleteUserIdRouter 
+    static async deleteUser (req, res) {
+        const userId = await req.params
+        const User = await data.users.destroy({
+            where:{
+                id: userId
+            }
+        })
+        return res.status(200).json(User)
+    }
 }
+
+module.exports = UserController

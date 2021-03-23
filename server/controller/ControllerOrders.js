@@ -1,4 +1,4 @@
-const orders = require ("../db/models/orders")
+const orders = require ("../db/models")
 
 module.exports = { 
 all (req, res) {

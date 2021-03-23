@@ -8,7 +8,7 @@ const router = Router()
 // aqui vão todas as rotas
 router.use('/example', ExampleRouter);
 
-// router.use(UsersRouter);
+// router.use('/users',UsersRouter);
 // router.use(ProductsRouter);
 // router.use(OrdersRouter)
 

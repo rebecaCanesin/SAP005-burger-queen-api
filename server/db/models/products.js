@@ -1,22 +1,29 @@
-const { DataTypes } = require ("sequelize");
-const sequelize = require ('../config/sequelize');
-
-
-const products = sequelize.define("products",{
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Products extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  };
+  Products.init({
     name: DataTypes.STRING,
     flavor: DataTypes.STRING,
     complement: DataTypes.STRING,
-    price: DataTypes.NUMBER,
+    price: DataTypes.FLOAT,
     image: DataTypes.STRING,
     type: DataTypes.STRING,
-    subtype: DataTypes.STRING,
-
-});
-
-const init = async ()=>{
-    await products.sync();
+    subtype: DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'Products',
+  });
+  return Products;
 };
-
-init();
-
-module.exports = products;

@@ -5,10 +5,10 @@
     "database": "dd4ceonff7o5i3",
     "host": "ec2-18-233-83-165.compute-1.amazonaws.com",
     "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
+    "dialectOptions":{
+      "ssl":{
+        "require":true,
+        "rejectUnauthorized":false
       }
     }
   },
@@ -18,10 +18,10 @@
     "database": "dd4ceonff7o5i3",
     "host": "ec2-18-233-83-165.compute-1.amazonaws.com",
     "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
+    "dialectOptions":{
+      "ssl":{
+        "require":true,
+        "rejectUnauthorized":false
       }
     }
   },
@@ -31,10 +31,10 @@
     "database": "dd4ceonff7o5i3",
     "host": "ec2-18-233-83-165.compute-1.amazonaws.com",
     "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
+    "dialectOptions":{
+      "ssl":{
+        "require":true,
+        "rejectUnauthorized":false
       }
     }
   }
