@@ -1,49 +1,54 @@
-const products = require ("../db/models/products")
+const data = require ("../db/models")
 
-module.exports = { 
-all (req, res) {
-    products.findAll().
-    then((result) => {
-        res.json(result);
-    })
-    
-},
+class ProductsController{
+    static async getProducts (req, res) {
+        const products = await data.Products.findAll()
+        return res.status(200).json(products)
+    }
 
-create(req, res){
-    const {name, flavor, complement, price, image, type, subtype} = req.body;
+    static async getProductById (req, res) {
+        const productid = await req.params
+        const product = await data.Products.findAll({
+            where:{
+                id: Number(productid)
+            }
+        })
+        return res.status(200).json(product)
+    }
 
-    products.create({
-        name,
-        flavor,
-        complement,
-        price,
-        image,
-        type,
-        subtype
-    })
-    .then((result) => {
-        res.status(201).json(result);
-    })
-    
-},
+    static async createProduct (req, res) {
+        const {name, flavor, complement, price, image, type, subtype} = await req.body;
+        const productNew = await data.Products.create({
+            name,
+            flavor,
+            complement,
+            price,
+            image,
+            type,
+            subtype
+        })
+        return res.status(201).json(productNew)
+    }
 
-// const GetProductIdRouter = (req, res) => {
-//     res.send("Product Id")
-// };
+    static async updateProduct (req, res) {
+        const productid = await req.params
+        const product = await data.Products.update({
+            where:{
+                id: Number(productid)
+            }
+        })
+        return res.status(200).json(product)
+    }
 
+    static async deleteProduct (req, res) {
+        const productid = await req.params
+        const product = await data.Products.destroy({
+            where:{
+                id: Number(productid)
+            }
+        })
+        return res.status(200).json(product)
+    }
+}
 
-// const PutProductIdRouter = (req, res) => {
-//     res.send("Update Products")
-// };
-
-// const DeleteProductIdRouter = (req, res) => {
-//     res.send("Delete Products")
-// };
-
-
-    // GetProductsRouter,
-    // GetProductIdRouter,
-    // PostProductsRouter,
-    // PutProductIdRouter,
-    // DeleteProductIdRouter,
-};
+module.exports = ProductsController

@@ -1,46 +1,49 @@
-const orders = require ("../db/models")
+const data = require ("../db/models")
 
-module.exports = { 
-all (req, res) {
-    orders.findAll().
-    then((result) => {
-        res.json(result);
-    })
-    
-},
+class OrdersController{
+    static async getOrders (req, res) {
+        const orders = await data.Orders.findAll()
+        return res.status(200).json(orders)
+    }
 
-create(req, res){
-    const {client_name, user_id, table, status, products} = req.body;
+    static async getOrderById (req, res) {
+        const orderId = await req.params
+        const order = await data.Orders.findAll({
+            where:{
+                id: Number(orderId)
+            }
+        })
+        return res.status(200).json(order)
+    }
 
-    orders.create({
-        client_name,
-        user_id,
-        table,
-        status,
-        products,
-    })
-    .then((result) => {
-        res.status(201).json(result);
-    })
-    
-},
+    static async createOrder (req, res) {
+        const {client_name, table, status} = await req.body;
+        const orderNew = await data.Orders.create({
+            client_name,
+            table,
+            status
+        })
+        return res.status(201).json(orderNew)
+    }
 
-// const GetOrderIdRouter = (req, res) => {
-//     res.send("Order Id")    
-// };
+    static async updateOrder (req, res) {
+        const orderId = await req.params
+        const order = await data.Orders.update({
+            where:{
+                id: Number(orderId)
+            }
+        })
+        return res.status(200).json(order)
+    }
 
-// const PutOrderIdRouter = (req, res) => {
-//     res.send("Update Orders")
-// };
-
-// const DeleteOrderIdRouter = (req, res) => {
-//     res.send("Delete Orders")
-// };
-
- 
-    // GetOrdersRouter,
-    // GetOrderIdRouter,
-    // PostOrdersRouter,
-    // PutOrderIdRouter,
-    // DeleteOrderIdRouter,
-};
+    static async deleteOrder (req, res) {
+        const orderId = await req.params
+        const order = await data.Orders.destroy({
+            where:{
+                id: Number(orderId)
+            }
+        })
+        return res.status(200).json(order)
+    }
+}
+module.exports = OrdersController

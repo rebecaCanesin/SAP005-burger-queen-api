@@ -2,23 +2,23 @@ const data = require ("../db/models")
 
 class UserController{
     static async getAllUsers (req, res) {
-        const usersAll = await data.users.findAll()
-        return res.status(200).json(usersAll)
+        const users = await data.Users.findAll()
+        return res.status(200).json(users)
     }
 
     static async getUserById (req, res) {
-        const userId = await req.params
-        const User = await data.users.findAll({
+        const uid = await req.params
+        const user = await data.Users.findAll({
             where:{
-                id: userId
+                id: Number(uid)
             }
         })
-        return res.status(200).json(User)
+        return res.status(200).json(user)
     }
 
     static async createUser (req, res) {
         const {name, email, role, restaurant} = await req.body;
-        const userNew = await data.users.create({
+        const userNew = await data.Users.create({
             name,
             email,
             role,
@@ -28,23 +28,23 @@ class UserController{
     }
 
     static async updateUser (req, res) {
-        const userId = await req.params
-        const User = await data.users.update({
+        const uid = await req.params
+        const User = await data.Users.update({
             where:{
-                id: userId
+                id: Number(uid)
             }
         })
         return res.status(200).json(User)
     }
 
     static async deleteUser (req, res) {
-        const userId = await req.params
-        const User = await data.users.destroy({
+        const uid = await req.params
+        const user = await data.Users.destroy({
             where:{
-                id: userId
+                id: Number(uid)
             }
         })
-        return res.status(200).json(User)
+        return res.status(200).json(user)
     }
 }
 
