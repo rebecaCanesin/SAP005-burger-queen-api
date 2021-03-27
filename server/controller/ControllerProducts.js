@@ -7,7 +7,7 @@ class ProductsController{
     }
 
     static async getProductById (req, res) {
-        const productid = await req.params
+        const { productid } = req.params
         const product = await data.Products.findAll({
             where:{
                 id: Number(productid)
@@ -17,7 +17,7 @@ class ProductsController{
     }
 
     static async createProduct (req, res) {
-        const {name, flavor, complement, price, image, type, subtype} = await req.body;
+        const {name, flavor, complement, price, image, type, subtype} = req.body;
         const productNew = await data.Products.create({
             name,
             flavor,
@@ -31,7 +31,7 @@ class ProductsController{
     }
 
     static async updateProduct (req, res) {
-        const productid = await req.params
+        const {productid} = req.params
         const product = await data.Products.update({
             where:{
                 id: Number(productid)
@@ -41,7 +41,7 @@ class ProductsController{
     }
 
     static async deleteProduct (req, res) {
-        const productid = await req.params
+        const {productid} = req.params
         const product = await data.Products.destroy({
             where:{
                 id: Number(productid)

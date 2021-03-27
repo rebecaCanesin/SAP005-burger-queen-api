@@ -7,7 +7,7 @@ class UserController{
     }
 
     static async getUserById (req, res) {
-        const uid = await req.params
+        const { uid } = req.params
         const user = await data.Users.findAll({
             where:{
                 id: Number(uid)
@@ -17,18 +17,15 @@ class UserController{
     }
 
     static async createUser (req, res) {
-        const {name, email, role, restaurant} = await req.body;
-        const userNew = await data.Users.create({
-            name,
-            email,
-            role,
-            restaurant,
-        })
+        const { name, email, role, restaurant } = req.body;
+        const userNew = await data.Users.create(
+            { name, email, role, restaurant }
+        )
         return res.status(201).json(userNew)
     }
 
     static async updateUser (req, res) {
-        const uid = await req.params
+        const {uid} = req.params
         const User = await data.Users.update({
             where:{
                 id: Number(uid)
@@ -38,7 +35,7 @@ class UserController{
     }
 
     static async deleteUser (req, res) {
-        const uid = await req.params
+        const {uid} = req.params
         const user = await data.Users.destroy({
             where:{
                 id: Number(uid)

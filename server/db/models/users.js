@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Users extends Model {
     static associate(models) {
-      Users.hasMany(models.Orders, {
+      Users.hasOne(models.Orders, {
         foreignKey:'user_id' 
       })
     }

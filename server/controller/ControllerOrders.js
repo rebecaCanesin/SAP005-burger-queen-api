@@ -7,7 +7,7 @@ class OrdersController{
     }
 
     static async getOrderById (req, res) {
-        const orderId = await req.params
+        const { orderId } = req.params
         const order = await data.Orders.findAll({
             where:{
                 id: Number(orderId)
@@ -17,7 +17,7 @@ class OrdersController{
     }
 
     static async createOrder (req, res) {
-        const {client_name, table, status} = await req.body;
+        const {client_name, table, status} = req.body;
         const orderNew = await data.Orders.create({
             client_name,
             table,
@@ -27,7 +27,7 @@ class OrdersController{
     }
 
     static async updateOrder (req, res) {
-        const orderId = await req.params
+        const {orderId} = req.params
         const order = await data.Orders.update({
             where:{
                 id: Number(orderId)
@@ -37,7 +37,7 @@ class OrdersController{
     }
 
     static async deleteOrder (req, res) {
-        const orderId = await req.params
+        const {orderId} = req.params
         const order = await data.Orders.destroy({
             where:{
                 id: Number(orderId)
