@@ -27,8 +27,15 @@ class OrdersController{
     }
 
     static async updateOrder (req, res) {
+        const {client_name, table, status} = req.body;
         const {orderId} = req.params
-        const order = await data.Orders.update({
+        const order = await data.Orders.update(
+            {
+                client_name, 
+                table, 
+                status
+            },
+            {
             where:{
                 id: Number(orderId)
             }

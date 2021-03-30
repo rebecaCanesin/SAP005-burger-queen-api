@@ -31,8 +31,18 @@ class ProductsController{
     }
 
     static async updateProduct (req, res) {
+        const {name, flavor, complement, price, image, type, subtype} = req.body;
         const {productid} = req.params
         const product = await data.Products.update({
+            name,
+            flavor,
+            complement,
+            price,
+            image,
+            type,
+            subtype
+        },
+        {
             where:{
                 id: Number(productid)
             }

@@ -31,9 +31,11 @@ class UserController{
     }
 
     static async updateUser (req, res) {
+        const { name, email, role, restaurant } = req.body;
         const {uid} = req.params
-        const User = await data.Users.update({
-            where:{
+        const User = await data.Users.update(
+            { name, email, role, restaurant },
+            {where:{
                 id: Number(uid)
             }
         })

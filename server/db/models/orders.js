@@ -6,10 +6,10 @@ module.exports = (sequelize, DataTypes) => {
   class Orders extends Model {
     static associate(models) {
       Orders.belongsTo(models.Users, {
-        foreignKey: 'user_id'
+        foreignKey: 'user_id', as: 'users'
       }),
       Orders.hasOne(models.ProductsOrders, {
-        foreignKey: 'orders_id'
+        foreignKey: 'orders_id', as:'products'
       })
     }
   };
