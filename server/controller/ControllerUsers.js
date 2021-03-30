@@ -2,7 +2,13 @@ const data = require ("../db/models")
 
 class UserController{
     static async getAllUsers (req, res) {
-        const users = await data.Users.findAll()
+        const { name, email, role, restaurant } = req.body;
+        const users = await data.Users.findAll({
+            name,
+            email,
+            role,
+            restaurant
+        })
         return res.status(200).json(users)
     }
 
