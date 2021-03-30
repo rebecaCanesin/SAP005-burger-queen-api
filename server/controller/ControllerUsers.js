@@ -17,9 +17,9 @@ class UserController{
     }
 
     static async createUser (req, res) {
-        const { name, email, role, restaurant } = req.body;
+        const { name, password, email, role, restaurant } = req.body;
         const userNew = await data.Users.create(
-            { name, email, role, restaurant }
+            { name, password, email, role, restaurant }
         )
         return res.status(201).json(userNew)
     }
