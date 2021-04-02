@@ -14,7 +14,8 @@ A hamburgueria Art Burguer teve uma aplicação criada para funcionar como um ca
 Para que as desenvolvedoras conseguissem fazer essa aplicação utilizaram uma _API rest_ onde os dados da aplicação foram armazenados.
 Com a interface da aplicação pronta foi proposto fazer a _API_ utilizada. 
 Nesse projeto tive o primeiro contato com Express e Sequelize. 
-O deploy da _API_ foi feito no Heroku e o link está na descrição do projeto. 
+O deploy da _API_ foi feito no Heroku.
+Link da _API_ : https://bq-api-rebeca.herokuapp.com/
 
 
 
@@ -22,27 +23,27 @@ O deploy da _API_ foi feito no Heroku e o link está na descrição do projeto.
 
 #### `/users`
 
- `GET /users`
- `GET /users/:uid`
- `POST /users`
- `PUT /users/:uid`
- `DELETE /users/:uid`
+`GET /users` <br>
+`GET /users/:uid`<br>
+`POST /users`<br>
+`PUT /users/:uid`<br>
+`DELETE /users/:uid`
 
 #### `/products`
 
- `GET /products`
- `GET /products/:productid`
- `POST /products`
- `PUT /products/:productid`
- `DELETE /products/:productid`
+`GET /products`<br>
+`GET /products/:productid`<br>
+`POST /products`<br>
+`PUT /products/:productid`<br>
+`DELETE /products/:productid`
 
 #### `/orders`
 
- `GET /orders`
- `GET /orders/:orderId`
- `POST /orders`
- `PUT /orders/:orderId`
- `DELETE /orders/:orderId`
+`GET /orders`<br>
+`GET /orders/:orderId`<br>
+`POST /orders`<br>
+`PUT /orders/:orderId`<br>
+`DELETE /orders/:orderId`
 
 ## 3. Habilidades desenvolvidas :dart: 
 
