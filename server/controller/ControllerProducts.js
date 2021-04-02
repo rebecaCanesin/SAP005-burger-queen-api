@@ -1,14 +1,14 @@
-const data = require ("../db/models")
+const dataBase = require ("../db/models")
 
 class ProductsController{
     static async getProducts (req, res) {
-        const products = await data.Products.findAll()
+        const products = await dataBase.Products.findAll()
         return res.status(200).json(products)
     }
 
     static async getProductById (req, res) {
         const { productid } = req.params
-        const product = await data.Products.findAll({
+        const product = await dataBase.Products.findAll({
             where:{
                 id: Number(productid)
             }
@@ -18,7 +18,7 @@ class ProductsController{
 
     static async createProduct (req, res) {
         const {name, flavor, complement, price, image, type, subtype} = req.body;
-        const productNew = await data.Products.create({
+        const productNew = await dataBase.Products.create({
             name,
             flavor,
             complement,
@@ -33,7 +33,7 @@ class ProductsController{
     static async updateProduct (req, res) {
         const {name, flavor, complement, price, image, type, subtype} = req.body;
         const {productid} = req.params
-        const product = await data.Products.update({
+        const product = await dataBase.Products.update({
             name,
             flavor,
             complement,
@@ -52,7 +52,7 @@ class ProductsController{
 
     static async deleteProduct (req, res) {
         const {productid} = req.params
-        const product = await data.Products.destroy({
+        const product = await dataBase.Products.destroy({
             where:{
                 id: Number(productid)
             }
